@@ -5,8 +5,18 @@ import 'package:shaher_website/ControlUI/Pages/SafeZone.dart';
 import 'package:shaher_website/isSelected.dart';
 import 'package:shaher_website/responsive/HomeView.dart';
 import 'package:shaher_website/responsive/ProjectView.dart';
+import 'package:sitemap/sitemap.dart';
 var selected ;
 void main()async{
+  final sitemap = new Sitemap();
+
+  sitemap.entries.add(new SitemapEntry()
+    ..location = 'https://shahersalousi.000webhostapp.com'
+    ..priority = 0.75
+    ..addAlternate('UI', 'https://shahersalousi.000webhostapp.com/#/UI')
+    );
+
+  print(sitemap.generate());
   runApp(ChangeNotifierProvider<isSelected>(
     create: (BuildContext context) => isSelected(-1,-1,{}),
     child: MyApp(),

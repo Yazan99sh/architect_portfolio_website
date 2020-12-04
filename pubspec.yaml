@@ -40,6 +40,7 @@ dependencies:
   flushbar: ^1.10.4
   progressive_image: ^1.0.1
   file_picker: ^2.0.0
+  sitemap: ^0.7.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

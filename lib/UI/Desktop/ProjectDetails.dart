@@ -22,6 +22,7 @@ class _ProjectDetailsState extends State<ProjectDetails> {
   var data=selected.getData();
   var projectNumber=selected.getSelectTapped()+1;
   var initImage;
+  var message='';
 Future ft = Future((){});
   @override
   void initState() {
@@ -29,6 +30,19 @@ Future ft = Future((){});
     _scrollController = ScrollController(initialScrollOffset: off);
     _scrollController.addListener(() {
         off = _scrollController.offset;
+        if (_scrollController.offset >= _scrollController.position.maxScrollExtent &&
+            !_scrollController.position.outOfRange) {
+          setState(() {
+            message = "reach the bottom";
+          });
+        }
+        if (_scrollController.offset <= _scrollController.position.minScrollExtent &&
+            !_scrollController.position.outOfRange) {
+          setState(() {
+            message = "reach the top";
+          });
+        }
+        print(message);
     });
     _scrollController2 = ScrollController(initialScrollOffset: 800);
     WidgetsBinding.instance.addPostFrameCallback((_){
@@ -231,7 +245,7 @@ pad = 50;
           },
           staggeredTileBuilder: (int index) =>
           new StaggeredTile.count(
-              8, index.isEven ? cellSize :cellOSize),
+            widget.images.length,widget.images.length),
           mainAxisSpacing: 5,
           crossAxisSpacing: 5,
         ),
@@ -269,8 +283,7 @@ pad = 50;
                     ),
                   ))
                   : Container(),
-              (MediaQuery.of(context).size.width * widget.images.length) - (widget.images.length+2) >=
-                  off
+              message!="reach the bottom"
                   ? Expanded(
                   child: Align(
                     alignment: Alignment.centerRight,
