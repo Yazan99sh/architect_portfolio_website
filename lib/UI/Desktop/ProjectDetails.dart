@@ -42,7 +42,6 @@ Future ft = Future((){});
             message = "reach the top";
           });
         }
-        print(message);
     });
     _scrollController2 = ScrollController(initialScrollOffset: 800);
     WidgetsBinding.instance.addPostFrameCallback((_){
